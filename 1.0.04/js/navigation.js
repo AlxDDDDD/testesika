@@ -100,7 +100,19 @@ class Navigation extends Event {
                     this.page_tpl.selfDestroy();
                 }
 
-                this.page_tpl = await this.initPage(this.tpl, 'tpl');
+                this.page_tpl = await this.initPage(this.tpl, 'tpl', { cities: this.ikaeasyData.cities, movements: this.ikaeasyData.movements, espionageTargets: this.ikaeasyData.espionageTargets });
+                if (this.tpl === 'military' || this.tpl === 'espionage') {
+                    const renderedContent = await this.page_tpl.render();
+                    setTimeout(() => {
+                        const targetElement = $("#mainview .content");
+                        if (targetElement.length) {
+                            targetElement.html(renderedContent.html);
+                        } else {
+                            console.warn("Elemento #mainview .content não encontrado. Injetando no body.");
+                            $("body").append(renderedContent.html);
+                        }
+                    }, 500); // Atraso de 500ms
+                }
             } else if (this.page_tpl) {
                 this.page_tpl.refresh();
                 this.page_tpl.updated();
@@ -124,7 +136,7 @@ class Navigation extends Event {
         }
     }
 
-    async initPage(name, path) {
+    async initPage(name, path, data = {}) {
         if (typeof name !== 'string') {
             return;
         }
@@ -136,7 +148,7 @@ class Navigation extends Event {
                 return null;
             }
 
-            return new page(this, name);
+            return new page(this, name, data);
 
         } catch (error) {
             console.log(error);

@@ -1,8 +1,8 @@
 import Parent from '../../../_dummy.js';
 
 class MilitaryTpl extends Parent {
-    constructor(data) {
-        super(data);
+    constructor(Front, name, data) {
+        super(Front, name);
         this.data = data;
         this.cities = data.cities || {};
         this.movements = data.movements || [];

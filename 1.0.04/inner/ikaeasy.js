@@ -38,6 +38,10 @@
                         resp.forEach((r) => {
                             if (r[0] === 'changeView') {
                                 let viewName = r[1][0];
+                                // Se a view for militar ou espionagem, não permita que o Ikariam a sobrescreva
+                                if (viewName === 'militaryAdvisor' || viewName === 'safehouse') {
+                                    return false;
+                                }
                                 self._viewData[viewName] = null;
 
                                 if (typeof r[1][2] === 'object') {
@@ -142,6 +146,14 @@
                     wood:       data.resourceLevel,
                     cities:     data.cities
                 };
+            }
+
+            // Adiciona dados militares e de espionagem ao objeto de transferência
+            if (ikariam.model.militaryData) {
+                trasferVars.military = ikariam.model.militaryData;
+            }
+            if (ikariam.model.espionageData) {
+                trasferVars.espionage = ikariam.model.espionageData;
             }
 
             this.send(trasferVars);

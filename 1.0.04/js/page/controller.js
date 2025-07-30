@@ -106,6 +106,14 @@ class Controller {
         return this._modules[name];
     }
 
+    async renderModule(name, data, helpers = {}) {
+        const module = await this.createModule(name);
+        if (module && typeof module.render === 'function') {
+            return module.render(data, helpers);
+        }
+        return { html: '', data: {} };
+    }
+
     /**
      * userId игрока
      * @returns {Number}
