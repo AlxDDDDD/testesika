@@ -1,0 +1,90 @@
+{
+  "action": {
+    "default_icon": "icon/128.png",
+    "default_title": "IkaEasy"
+  },
+  "background": {
+    "service_worker": "js/bg/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "js/libs/jquery.js",
+        "js/libs/lodash.js",
+        "js/libs/moment-with-locales.min.js",
+        "js/init.js"
+      ],
+      "matches": [
+        "http://*.ikariam.gameforge.com/*",
+        "https://*.ikariam.gameforge.com/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "default_locale": "en",
+  "description": "__MSG_appDesc__",
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "128": "icon/128.png",
+    "16": "icon/16.png",
+    "32": "icon/32.png",
+    "48": "icon/48.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy7VGiaJG+l4E1cMpt0jpnWxNgfnh9BtYVO5T4d50+mlw+r6wJo/jzU97hUjp9evF256oR7lLTFIfZuJDg95A1YeIPR6GRiGPIDZucWQxQtoHRhH+OchB+17xoGUcdT6kmqDbpeZztfghDgNmM0g4Z2QQXlQi5XwLtnDMHRnzmgMw2H7/cQSTa0NcqHhS9N4t0v3jdb43qTqbRwXuDkrParUoUqW4M+IvY6ua/hyJj6W7+odzMz7aaXUgrpWoLyaK9Lf5aapzopThbyrkifqDTk7zgl0b19eeFppI197bKxQzHoRVmDYrX8IVGbPkGwRQY5712apu3Alniv1PkEV8TwIDAQAB",
+  "manifest_version": 3,
+  "name": "IkaEasy V3",
+  "permissions": [
+    "tabs",
+    "storage",
+    "notifications",
+    "background",
+    "alarms"
+  ],
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
+  },
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "version": "3.1.0.24",
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "http://*.ikariam.gameforge.com/*",
+        "https://*.ikariam.gameforge.com/*",
+        "https://ikalogs.ru/*",
+        "https://*.ikalogs.ru/*"
+      ],
+      "resources": [
+        "inner/ikaeasy.js",
+        "images/*",
+        "js/page/*",
+        "js/helper/*",
+        "js/libs/*",
+        "js/data/*",
+        "js/sandbox/*",
+        "js/const.js",
+        "js/utils.js",
+        "js/langs.js",
+        "js/sandbox.js",
+        "js/templater.js",
+        "js/navigation.js",
+        "js/assignedLangs.js",
+        "js/initModule.js",
+        "lang/*",
+        "css/*",
+        "icon/*",
+        "tpl/*",
+        "whatnews.json",
+        "options.js",
+        "sandbox.html"
+      ]
+    }
+  ]
+}

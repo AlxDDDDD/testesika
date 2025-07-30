@@ -1,0 +1,313 @@
+<div class="military-overview-container">
+    <div class="military-header">
+        <h3>Visão Geral Militar</h3>
+        <div class="military-controls">
+            <button class="refresh-btn" onclick="refreshMilitaryData()">Atualizar</button>
+            <button class="export-btn" onclick="exportMilitaryData()">Exportar</button>
+        </div>
+    </div>
+    
+    <div class="military-content">
+        <% if (data && data.cities && Object.keys(data.cities).length > 0) { %>
+            <table class="military-overview-table">
+                <thead>
+                    <tr>
+                        <th class="city-name">Cidade</th>
+                        <th class="action-points" title="Pontos de Ação">PA</th>
+                        <th class="actions">Ações</th>
+                        <% data.unitTypes.forEach(function(unitType) { %>
+                            <th class="unit-<%= unitType %>" title="<%= getUnitName(unitType) %>">
+                                <%= getUnitName(unitType) %>
+                            </th>
+                        <% }); %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Object.values(data.cities).forEach(function(city) { %>
+                        <tr class="city-row" data-city-id="<%= city.id %>">
+                            <td class="city-name">
+                                <strong><%= city.name %></strong>
+                            </td>
+                            <td class="action-points">
+                                <%= city.actionPoints %>
+                            </td>
+                            <td class="actions">
+                                <a href="#" class="action-link barracks-link" 
+                                   data-action="barracks" data-city="<%= city.name %>" 
+                                   title="Ir para o Quartel">Quartel</a>
+                                <a href="#" class="action-link shipyard-link" 
+                                   data-action="shipyard" data-city="<%= city.name %>" 
+                                   title="Ir para o Estaleiro">Estaleiro</a>
+                            </td>
+                            <% data.unitTypes.forEach(function(unitType) { %>
+                                <%
+                                    var present = city.units[unitType] || 0;
+                                    var training = city.training[unitType] || 0;
+                                    var deploying = city.deploying[unitType] || 0;
+                                    var plundering = city.plundering[unitType] || 0;
+                                    
+                                    var cellContent = present.toString();
+                                    var cellClass = 'unit-' + unitType;
+                                    var tooltip = getUnitName(unitType) + ': ' + present;
+                                    
+                                    if (training > 0) {
+                                        cellContent += ' (+' + training + ')';
+                                        tooltip += '\\nTreinando: ' + training;
+                                        cellClass += ' has-training';
+                                    }
+                                    
+                                    if (deploying > 0) {
+                                        cellContent += ' [' + deploying + ']';
+                                        tooltip += '\\nMovimentando: ' + deploying;
+                                        cellClass += ' has-deploying';
+                                    }
+                                    
+                                    if (plundering > 0) {
+                                        cellContent += ' {' + plundering + '}';
+                                        tooltip += '\\nSaqueando: ' + plundering;
+                                        cellClass += ' has-plundering';
+                                    }
+                                %>
+                                <td class="<%= cellClass %>" title="<%= tooltip %>">
+                                    <%= cellContent %>
+                                </td>
+                            <% }); %>
+                        </tr>
+                    <% }); %>
+                </tbody>
+                <tfoot>
+                    <tr class="totals-row">
+                        <td class="city-name"><strong>Total</strong></td>
+                        <td class="action-points">-</td>
+                        <td class="actions">-</td>
+                        <% data.unitTypes.forEach(function(unitType) { %>
+                            <%
+                                var total = 0;
+                                Object.values(data.cities).forEach(function(city) {
+                                    total += (city.units[unitType] || 0);
+                                });
+                            %>
+                            <td class="unit-<%= unitType %> total-cell">
+                                <strong><%= total %></strong>
+                            </td>
+                        <% }); %>
+                    </tr>
+                </tfoot>
+            </table>
+        <% } else { %>
+            <div class="military-empty">
+                <p>Nenhum dado militar disponível</p>
+                <p>Certifique-se de que você tem cidades com unidades militares.</p>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="military-legend">
+        <div class="legend-item">
+            <span class="legend-symbol">123</span>
+            <span class="legend-text">Unidades presentes</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-symbol">(+5)</span>
+            <span class="legend-text">Unidades em treinamento</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-symbol">[3]</span>
+            <span class="legend-text">Unidades em movimento</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-symbol">{2}</span>
+            <span class="legend-text">Unidades saqueando</span>
+        </div>
+    </div>
+</div>
+
+<style>
+.military-overview-container {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.military-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.military-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.military-controls button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.military-controls button:hover {
+    background-color: #45a049;
+}
+
+.military-overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.military-overview-table th,
+.military-overview-table td {
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    text-align: center;
+}
+
+.military-overview-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.military-overview-table .city-name {
+    text-align: left;
+    font-weight: bold;
+    min-width: 120px;
+    max-width: 150px;
+}
+
+.military-overview-table .action-points {
+    min-width: 30px;
+}
+
+.military-overview-table .actions {
+    min-width: 100px;
+}
+
+.military-overview-table .action-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 10px;
+    margin: 0 2px;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.military-overview-table .action-link:hover {
+    background-color: #e6f3ff;
+    text-decoration: underline;
+}
+
+.military-overview-table .has-training {
+    background-color: #e6f3ff;
+}
+
+.military-overview-table .has-deploying {
+    background-color: #fff2e6;
+}
+
+.military-overview-table .has-plundering {
+    background-color: #ffe6e6;
+}
+
+.military-overview-table .totals-row {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.military-overview-table .total-cell {
+    background-color: #e9e9e9;
+}
+
+.military-empty {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.military-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-symbol {
+    font-weight: bold;
+    color: #333;
+}
+
+.legend-text {
+    color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .military-overview-table {
+        font-size: 10px;
+    }
+    
+    .military-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .military-controls {
+        align-self: flex-end;
+    }
+}
+</style>
+
+<script>
+function refreshMilitaryData() {
+    // Implementar atualização dos dados militares
+    console.log('Atualizando dados militares...');
+    // Aqui seria feita a chamada para atualizar os dados
+}
+
+function exportMilitaryData() {
+    // Implementar exportação dos dados militares
+    console.log('Exportando dados militares...');
+    // Aqui seria feita a exportação dos dados em CSV ou outro formato
+}
+
+// Adicionar event listeners para os links de ação
+document.addEventListener('DOMContentLoaded', function() {
+    const actionLinks = document.querySelectorAll('.action-link');
+    actionLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const action = this.dataset.action;
+            const city = this.dataset.city;
+            
+            // Implementar navegação para quartel/estaleiro
+            console.log(`Ação: ${action}, Cidade: ${city}`);
+            // Aqui seria feita a navegação para a página correspondente
+        });
+    });
+});
+</script>
+
