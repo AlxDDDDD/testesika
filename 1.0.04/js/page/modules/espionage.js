@@ -1,8 +1,8 @@
-import Parent from "../../../_dummy.js";
+import Parent from '../../../_dummy.js';
 
 class EspionageTpl extends Parent {
-    constructor(Front, name, data) {
-        super(Front, name);
+    constructor(data) {
+        super(data);
         this.data = data;
         this.espionageTargets = data.espionageTargets || [];
     }

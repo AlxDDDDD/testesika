@@ -38,10 +38,6 @@
                         resp.forEach((r) => {
                             if (r[0] === 'changeView') {
                                 let viewName = r[1][0];
-                                // Se a view for militar ou espionagem, não permita que o Ikariam a sobrescreva
-                                if (viewName === 'militaryAdvisor' || viewName === 'safehouse') {
-                                    return false;
-                                }
                                 self._viewData[viewName] = null;
 
                                 if (typeof r[1][2] === 'object') {
@@ -148,26 +144,11 @@
                 };
             }
 
-            // Adiciona dados militares e de espionagem ao objeto de transferência
-            if (ikariam.model.militaryData) {
-                trasferVars.military = ikariam.model.militaryData;
-            }
-            if (ikariam.model.espionageData) {
-                trasferVars.espionage = ikariam.model.espionageData;
-            }
-
             this.send(trasferVars);
         }
 
         getTemplateId (){
             if ((ikariam.templateView) && (ikariam.templateView.id)) {
-                // Mapeamento explícito para as abas Militar e Espionagem
-                if (ikariam.templateView.id === 'militaryAdvisorCombatList' || ikariam.templateView.id === 'militaryAdvisorWarList' || ikariam.templateView.id === 'militaryAdvisor') {
-                    return 'military';
-                }
-                if (ikariam.templateView.id === 'safehouse' || ikariam.templateView.id === 'espionage') {
-                    return 'espionage';
-                }
                 return ikariam.templateView.id;
             }
 
