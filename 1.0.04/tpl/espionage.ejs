@@ -1,0 +1,426 @@
+<div class="espionage-overview-container">
+    <div class="espionage-header">
+        <h3>Visão Geral de Espionagem</h3>
+        <div class="espionage-controls">
+            <button class="refresh-btn" onclick="refreshEspionageData()">Atualizar</button>
+            <button class="add-target-btn" onclick="addEspionageTarget()">Adicionar Alvo</button>
+            <button class="export-btn" onclick="exportEspionageData()">Exportar</button>
+        </div>
+    </div>
+    
+    <div class="espionage-content">
+        <% if (data && data.targets && data.targets.length > 0) { %>
+            <table class="espionage-overview-table">
+                <thead>
+                    <tr>
+                        <th class="city-name">Cidade</th>
+                        <th class="player-name">Jogador</th>
+                        <th class="alliance-name">Aliança</th>
+                        <th class="building-levels" title="Prefeitura/Muralha">Prédios</th>
+                        <th class="travel-time">Tempo</th>
+                        <th class="resources-lootable" title="Recursos Saqueáveis">Saqueável</th>
+                        <th class="resources-looted" title="Recursos Já Saqueados">Saqueado</th>
+                        <th class="military-info" title="Combates/Pontuação Militar">Militar</th>
+                        <th class="location">Local</th>
+                        <th class="last-spy">Última Esp.</th>
+                        <th class="actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.targets.forEach(function(target) { %>
+                        <tr class="target-row player-state-<%= target.playerState %>" data-target-id="<%= target.id %>">
+                            <td class="city-name">
+                                <strong><%= target.name %></strong>
+                                <% if (target.occupiedBy) { %>
+                                    <span class="status-icon occupied" title="Ocupada por <%= target.occupiedBy %>">🏴</span>
+                                <% } %>
+                                <% if (target.blockadedBy) { %>
+                                    <span class="status-icon blockaded" title="Bloqueada por <%= target.blockadedBy %>">⚓</span>
+                                <% } %>
+                            </td>
+                            <td class="player-name">
+                                <%= target.player %>
+                            </td>
+                            <td class="alliance-name">
+                                <%= target.alliance || '-' %>
+                            </td>
+                            <td class="building-levels">
+                                <%= target.townHallLevel %>/<%= target.wallLevel %>
+                            </td>
+                            <td class="travel-time">
+                                <%= target.travelTime %>
+                            </td>
+                            <td class="resources-lootable">
+                                <%
+                                    var lootable = target.resources.lootable;
+                                    var lootableStr = formatNumber(lootable.wood) + '/' + 
+                                                     formatNumber(lootable.wine) + '/' + 
+                                                     formatNumber(lootable.marble) + '/' + 
+                                                     formatNumber(lootable.glass) + '/' + 
+                                                     formatNumber(lootable.sulfur);
+                                %>
+                                <span title="Madeira/Vinho/Mármore/Cristal/Enxofre"><%= lootableStr %></span>
+                            </td>
+                            <td class="resources-looted">
+                                <%
+                                    var looted = target.resources.looted;
+                                    var lootedStr = formatNumber(looted.wood) + '/' + 
+                                                   formatNumber(looted.wine) + '/' + 
+                                                   formatNumber(looted.marble) + '/' + 
+                                                   formatNumber(looted.glass) + '/' + 
+                                                   formatNumber(looted.sulfur);
+                                %>
+                                <span title="Madeira/Vinho/Mármore/Cristal/Enxofre"><%= lootedStr %></span>
+                            </td>
+                            <td class="military-info">
+                                <%= target.combats %>/<%= formatNumber(target.militaryScore) %>
+                            </td>
+                            <td class="location">
+                                [<%= target.location.x %>:<%= target.location.y %>]
+                            </td>
+                            <td class="last-spy">
+                                <%= getTimeSince(target.lastSpyTime) %>
+                            </td>
+                            <td class="actions">
+                                <a href="#" class="action-link spy-link" 
+                                   data-action="spy" data-target="<%= target.id %>" 
+                                   title="Enviar Espião">Espionar</a>
+                                <a href="#" class="action-link attack-link" 
+                                   data-action="attack" data-target="<%= target.id %>" 
+                                   title="Atacar Cidade">Atacar</a>
+                                <a href="#" class="action-link pillage-link" 
+                                   data-action="pillage" data-target="<%= target.id %>" 
+                                   title="Saquear Cidade">Saquear</a>
+                                <a href="#" class="action-link remove-link" 
+                                   data-action="remove" data-target="<%= target.id %>" 
+                                   title="Remover Alvo">Remover</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            
+            <div class="espionage-summary">
+                <div class="summary-item">
+                    <strong>Total de alvos:</strong> <%= data.targets.length %>
+                </div>
+                <div class="summary-item">
+                    <strong>Alvos ativos:</strong> <%= data.targets.filter(t => t.playerState === 'active').length %>
+                </div>
+                <div class="summary-item">
+                    <strong>Alvos inativos:</strong> <%= data.targets.filter(t => t.playerState === 'inactive').length %>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="espionage-empty">
+                <p>Nenhum alvo de espionagem disponível</p>
+                <p>Clique em "Adicionar Alvo" para começar a monitorar cidades.</p>
+                <button class="add-target-btn-large" onclick="addEspionageTarget()">Adicionar Primeiro Alvo</button>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<style>
+.espionage-overview-container {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.espionage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.espionage-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.espionage-controls button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.espionage-controls button:hover {
+    background-color: #1976D2;
+}
+
+.espionage-overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+
+.espionage-overview-table th,
+.espionage-overview-table td {
+    border: 1px solid #ccc;
+    padding: 3px 5px;
+    text-align: center;
+}
+
+.espionage-overview-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    font-size: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.espionage-overview-table .city-name {
+    text-align: left;
+    font-weight: bold;
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.espionage-overview-table .player-name {
+    min-width: 80px;
+    max-width: 100px;
+}
+
+.espionage-overview-table .alliance-name {
+    min-width: 60px;
+    max-width: 80px;
+}
+
+.espionage-overview-table .building-levels {
+    min-width: 50px;
+}
+
+.espionage-overview-table .travel-time {
+    min-width: 60px;
+}
+
+.espionage-overview-table .resources-lootable,
+.espionage-overview-table .resources-looted {
+    min-width: 80px;
+    font-size: 10px;
+}
+
+.espionage-overview-table .military-info {
+    min-width: 60px;
+}
+
+.espionage-overview-table .location {
+    min-width: 60px;
+}
+
+.espionage-overview-table .last-spy {
+    min-width: 70px;
+}
+
+.espionage-overview-table .actions {
+    min-width: 120px;
+}
+
+.espionage-overview-table .action-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 9px;
+    margin: 0 1px;
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+.espionage-overview-table .action-link:hover {
+    background-color: #e6f3ff;
+    text-decoration: underline;
+}
+
+.espionage-overview-table .spy-link:hover {
+    background-color: #e8f5e8;
+}
+
+.espionage-overview-table .attack-link:hover {
+    background-color: #ffe8e8;
+}
+
+.espionage-overview-table .pillage-link:hover {
+    background-color: #fff8e8;
+}
+
+.espionage-overview-table .remove-link:hover {
+    background-color: #f0f0f0;
+}
+
+.espionage-overview-table .player-state-inactive {
+    color: #999;
+    background-color: #f9f9f9;
+}
+
+.espionage-overview-table .player-state-vacation {
+    color: #0066cc;
+    background-color: #e6f3ff;
+}
+
+.espionage-overview-table .player-state-banned {
+    color: #cc0000;
+    background-color: #ffe6e6;
+}
+
+.status-icon {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.status-icon.occupied {
+    color: #cc0000;
+}
+
+.status-icon.blockaded {
+    color: #0066cc;
+}
+
+.espionage-summary {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.espionage-empty {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.add-target-btn-large {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-target-btn-large:hover {
+    background-color: #45a049;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .espionage-overview-table {
+        font-size: 9px;
+    }
+    
+    .espionage-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .espionage-controls {
+        align-self: flex-end;
+    }
+    
+    .espionage-summary {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+</style>
+
+<script>
+function refreshEspionageData() {
+    console.log('Atualizando dados de espionagem...');
+    // Implementar atualização dos dados de espionagem
+}
+
+function addEspionageTarget() {
+    console.log('Adicionando novo alvo de espionagem...');
+    // Implementar diálogo para adicionar novo alvo
+    const cityName = prompt('Nome da cidade:');
+    if (cityName) {
+        // Aqui seria feita a adição do novo alvo
+        console.log('Adicionando alvo:', cityName);
+    }
+}
+
+function exportEspionageData() {
+    console.log('Exportando dados de espionagem...');
+    // Implementar exportação dos dados de espionagem
+}
+
+function formatNumber(num) {
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'k';
+    }
+    return num.toString();
+}
+
+function getTimeSince(lastSpyTime) {
+    if (!lastSpyTime) return 'Nunca';
+    
+    const now = Date.now();
+    const diff = now - lastSpyTime;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const days = Math.floor(hours / 24);
+    
+    if (days > 0) {
+        return days + 'd ' + (hours % 24) + 'h';
+    } else if (hours > 0) {
+        return hours + 'h';
+    } else {
+        const minutes = Math.floor(diff / (1000 * 60));
+        return minutes + 'm';
+    }
+}
+
+// Adicionar event listeners para os links de ação
+document.addEventListener('DOMContentLoaded', function() {
+    const actionLinks = document.querySelectorAll('.action-link');
+    actionLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const action = this.dataset.action;
+            const target = this.dataset.target;
+            
+            console.log(`Ação: ${action}, Alvo: ${target}`);
+            
+            switch(action) {
+                case 'spy':
+                    // Implementar envio de espião
+                    break;
+                case 'attack':
+                    // Implementar ataque
+                    break;
+                case 'pillage':
+                    // Implementar saque
+                    break;
+                case 'remove':
+                    if (confirm('Tem certeza que deseja remover este alvo?')) {
+                        // Implementar remoção do alvo
+                        console.log('Removendo alvo:', target);
+                    }
+                    break;
+            }
+        });
+    });
+});
+</script>
+

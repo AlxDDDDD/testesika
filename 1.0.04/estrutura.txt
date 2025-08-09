@@ -1,0 +1,557 @@
+Listagem de caminhos de pasta
+O n£mero de s‚rie do volume ‚ 2CCD-11AF
+C:.
+|   estrutura.txt
+|   manifest.json
+|   options.js
+|   sandbox.html
+|   whatnews.json
+|   
++---css
+|       ikaeasy.css
+|       ikaeasy.css.map
+|       
++---icon
+|       128.png
+|       16.png
+|       19.png
+|       256.png
+|       32.png
+|       48.png
+|       96-16.png
+|       
++---images
+|   |   ally_message.ico
+|   |   ally_message.png
+|   |   army.png
+|   |   army_d.png
+|   |   army_f.png
+|   |   arrowGreen.png
+|   |   arrowGreenFocus.png
+|   |   arrowRed.png
+|   |   arrowRedFocus.png
+|   |   bg_sidebox.gif
+|   |   bg_sidebox_footer.gif
+|   |   bg_sidebox_header.jpg
+|   |   border.jpg
+|   |   btn_max.gif
+|   |   bug.png
+|   |   buildingbutton_sprite.jpg
+|   |   button.png
+|   |   checkbox_checked.png
+|   |   checkbox_checked_hover.png
+|   |   checkbox_off.png
+|   |   checkbox_off_hover.png
+|   |   circleBlue.png
+|   |   circleGray.png
+|   |   circleGreen.png
+|   |   circleRed.png
+|   |   copy.svg
+|   |   corruption_24x24.png
+|   |   embassy.png
+|   |   empire.png
+|   |   externalURL.png
+|   |   externalURLHover.png
+|   |   fleet.png
+|   |   fleet_d.png
+|   |   fleet_f.png
+|   |   growth_positive.png
+|   |   icon_actionpoints.png
+|   |   icon_actionpoints_rtl.png
+|   |   icon_time.png
+|   |   ikaeasy_islandsSearch.png
+|   |   ikalogs-loader.gif
+|   |   ikalogs.png
+|   |   loading.gif
+|   |   map.svg
+|   |   nextCity.png
+|   |   premium.png
+|   |   radio_circle_checked.png
+|   |   radio_circle_off.png
+|   |   res.png
+|   |   resourceCg.png
+|   |   resourceCr.png
+|   |   resourceLR.png
+|   |   res_d.png
+|   |   res_f.png
+|   |   scroll_arrow_sprite.png
+|   |   scroll_bg.png
+|   |   scroll_mid.png
+|   |   sigma.png
+|   |   slot-left-big.png
+|   |   transporter.png
+|   |   window_control_sprite.gif
+|   |   window_control_sprite.png
+|   |   world-footer.png
+|   |   
+|   +---buttons
+|   |       btn_downgrade-off.jpg
+|   |       btn_downgrade.jpg
+|   |       btn_upgrade-off.jpg
+|   |       btn_upgrade.jpg
+|   |       
+|   +---icons
+|   |       capturePoints.png
+|   |       icon_crystal_small.png
+|   |       icon_glass.png
+|   |       icon_marble.png
+|   |       icon_marble_small.png
+|   |       icon_sulfur.png
+|   |       icon_sulfur_small.png
+|   |       icon_wine.png
+|   |       icon_wine_small.png
+|   |       icon_wood.png
+|   |       icon_wood_small.png
+|   |       multi_wine.png
+|   |       question-circle-regular.svg
+|   |       sync-solid.svg
+|   |       w1.png
+|   |       w2.png
+|   |       w3.png
+|   |       w4.png
+|   |       w5.png
+|   |       w6.png
+|   |       w7.png
+|   |       w8.png
+|   |       
+|   +---marker
+|   |   |   controls.png
+|   |   |   highlighter_left.png
+|   |   |   highlighter_panel.png
+|   |   |   highlighter_right.png
+|   |   |   paint-icon-big.png
+|   |   |   paint-icon.png
+|   |   |   topList-menu.png
+|   |   |   
+|   |   +---black
+|   |   |       black.png
+|   |   |       city_black.png
+|   |   |       city_black_animated.png
+|   |   |       city_black_animated_glow.png
+|   |   |       city_black_glow.png
+|   |   |       flag_black_gross.png
+|   |   |       
+|   |   +---bordo
+|   |   |       bordo.png
+|   |   |       city_bordo.png
+|   |   |       city_bordo_animated.png
+|   |   |       city_bordo_animated_glow.png
+|   |   |       city_bordo_glow.png
+|   |   |       flag_bordo_gross.png
+|   |   |       
+|   |   +---orange
+|   |   |       city_orange.png
+|   |   |       city_orange_animated.png
+|   |   |       city_orange_animated_glow.png
+|   |   |       city_orange_glow.png
+|   |   |       flag_orange_gross.png
+|   |   |       orange.png
+|   |   |       
+|   |   +---pink
+|   |   |       city_pink.png
+|   |   |       city_pink_animated.png
+|   |   |       city_pink_animated_glow.png
+|   |   |       city_pink_glow.png
+|   |   |       flag_pink_gross.png
+|   |   |       pink.png
+|   |   |       
+|   |   +---purple
+|   |   |       city_purple.png
+|   |   |       city_purple_animated.png
+|   |   |       city_purple_animated_glow.png
+|   |   |       city_purple_glow.png
+|   |   |       flag_purple_gross.png
+|   |   |       purple.png
+|   |   |       
+|   |   +---turquoise
+|   |   |       city_turquoise.png
+|   |   |       city_turquoise_animated.png
+|   |   |       city_turquoise_animated_glow.png
+|   |   |       city_turquoise_glow.png
+|   |   |       flag_turquoise_gross.png
+|   |   |       turquoise.png
+|   |   |       
+|   |   \---white
+|   |           city_white.png
+|   |           city_white_animated.png
+|   |           city_white_animated_glow.png
+|   |           city_white_glow.png
+|   |           flag_white_gross.png
+|   |           white.png
+|   |           
+|   +---marker-rtl
+|   |   |   controls.png
+|   |   |   highlighter_left.png
+|   |   |   highlighter_panel.png
+|   |   |   highlighter_right.png
+|   |   |   paint-icon-big.png
+|   |   |   paint-icon.png
+|   |   |   topList-menu.png
+|   |   |   
+|   |   +---black
+|   |   |       black.png
+|   |   |       city_black.png
+|   |   |       city_black_animated.png
+|   |   |       city_black_animated_glow.png
+|   |   |       city_black_glow.png
+|   |   |       flag_black_gross.png
+|   |   |       
+|   |   +---bordo
+|   |   |       bordo.png
+|   |   |       city_bordo.png
+|   |   |       city_bordo_animated.png
+|   |   |       city_bordo_animated_glow.png
+|   |   |       city_bordo_glow.png
+|   |   |       flag_bordo_gross.png
+|   |   |       
+|   |   +---orange
+|   |   |       city_orange.png
+|   |   |       city_orange_animated.png
+|   |   |       city_orange_animated_glow.png
+|   |   |       city_orange_glow.png
+|   |   |       flag_orange_gross.png
+|   |   |       orange.png
+|   |   |       
+|   |   +---pink
+|   |   |       city_pink.png
+|   |   |       city_pink_animated.png
+|   |   |       city_pink_animated_glow.png
+|   |   |       city_pink_glow.png
+|   |   |       flag_pink_gross.png
+|   |   |       pink.png
+|   |   |       
+|   |   +---purple
+|   |   |       city_purple.png
+|   |   |       city_purple_animated.png
+|   |   |       city_purple_animated_glow.png
+|   |   |       city_purple_glow.png
+|   |   |       flag_purple_gross.png
+|   |   |       purple.png
+|   |   |       
+|   |   +---turquoise
+|   |   |       city_turquoise.png
+|   |   |       city_turquoise_animated.png
+|   |   |       city_turquoise_animated_glow.png
+|   |   |       city_turquoise_glow.png
+|   |   |       flag_turquoise_gross.png
+|   |   |       turquoise.png
+|   |   |       
+|   |   \---white
+|   |           city_white.png
+|   |           city_white_animated.png
+|   |           city_white_animated_glow.png
+|   |           city_white_glow.png
+|   |           flag_white_gross.png
+|   |           white.png
+|   |           
+|   +---resources
+|   |       icon_glass.png
+|   |       icon_marble.png
+|   |       icon_population.png
+|   |       icon_research.png
+|   |       icon_sulfur.png
+|   |       icon_wine.png
+|   |       icon_wood.png
+|   |       
+|   +---smilies
+|   |       ecstatic.png
+|   |       happy.png
+|   |       neutral.png
+|   |       outraged.png
+|   |       sad.png
+|   |       
+|   \---window
+|           bg_footer_center.png
+|           bg_footer_left.png
+|           bg_footer_right.png
+|           bg_header_center.png
+|           bg_header_left.png
+|           bg_header_right.png
+|           bg_maincontentbox.png
+|           bg_maincontentbox_left.png
+|           
++---inner
+|       ikaeasy.js
+|       
++---js
+|   |   assignedLangs.js
+|   |   const.js
+|   |   init.js
+|   |   initModule.js
+|   |   langs.js
+|   |   navigation.js
+|   |   sandbox.js
+|   |   utils.js
+|   |   
+|   +---bg
+|   |       background.js
+|   |       checker.js
+|   |       langs.js
+|   |       notification.js
+|   |       
+|   +---data
+|   |       city.js
+|   |       info.js
+|   |       Manager.js
+|   |       military.js
+|   |       movement.js
+|   |       premium.js
+|   |       research.js
+|   |       
+|   +---helper
+|   |   |   cache.js
+|   |   |   db.js
+|   |   |   event.js
+|   |   |   httpClient.js
+|   |   |   ikalogs.js
+|   |   |   ikalogsRu.js
+|   |   |   marker.js
+|   |   |   notification.js
+|   |   |   options.js
+|   |   |   storage.js
+|   |   |   support.js
+|   |   |   templater.js
+|   |   |   tooltip.js
+|   |   |   whatnews.js
+|   |   |   win.js
+|   |   |   
+|   |   \---db
+|   |           buildings.js
+|   |           
+|   +---libs
+|   |       db.js
+|   |       jquery.js
+|   |       lodash.js
+|   |       moment-with-locales.min.js
+|   |       
+|   +---page
+|   |   |   common.js
+|   |   |   controller.js
+|   |   |   
+|   |   +---bg
+|   |   |       city.js
+|   |   |       dummy.js
+|   |   |       island.js
+|   |   |       worldmap_iso.js
+|   |   |       
+|   |   +---modules
+|   |   |   |   dummy.js
+|   |   |   |   empire.js
+|   |   |   |   notes.js
+|   |   |   |   worldmap-islandSearch.js
+|   |   |   |   
+|   |   |   \---empire
+|   |   |           buildings.js
+|   |   |           dummy.js
+|   |   |           espionage.js
+|   |   |           military.js
+|   |   |           resources.js
+|   |   |           
+|   |   \---tpl
+|   |       |   abolishCity.js
+|   |       |   academy.js
+|   |       |   barbarianVillage.js
+|   |       |   barracks.js
+|   |       |   blockade.js
+|   |       |   buildingGround.js
+|   |       |   cityDetails.js
+|   |       |   cityMilitary.js
+|   |       |   colonize.js
+|   |       |   culturalPossessions_assign.js
+|   |       |   defendCity.js
+|   |       |   defendPort.js
+|   |       |   deployment.js
+|   |       |   diplomacyAdvisor.js
+|   |       |   diplomacyAdvisorArchive.js
+|   |       |   diplomacyAdvisorArchiveOutBox.js
+|   |       |   diplomacyAdvisorOutBox.js
+|   |       |   diplomacyAdvisorSearchUser.js
+|   |       |   diplomacyAlly.js
+|   |       |   diplomacyAllyInfo.js
+|   |       |   diplomacyAllyMemberlist.js
+|   |       |   diplomacyAllySearch.js
+|   |       |   diplomacyIslandBoard.js
+|   |       |   diplomacyTreaty.js
+|   |       |   dummy.js
+|   |       |   finances.js
+|   |       |   highscore.js
+|   |       |   highscoreAlly.js
+|   |       |   ignoreList.js
+|   |       |   militaryAdvisor.js
+|   |       |   militaryAdvisorCombatList.js
+|   |       |   militaryAdvisorReportView.js
+|   |       |   militaryAdvisorWarList.js
+|   |       |   museum.js
+|   |       |   occupy.js
+|   |       |   options.js
+|   |       |   optionsAccount.js
+|   |       |   optionsIPSharing.js
+|   |       |   optionsNotification.js
+|   |       |   palace.js
+|   |       |   plunder.js
+|   |       |   port.js
+|   |       |   researchAdvisor.js
+|   |       |   resource.js
+|   |       |   safehouse.js
+|   |       |   sendIKMessage.js
+|   |       |   shipyard.js
+|   |       |   takeOffer.js
+|   |       |   tavern.js
+|   |       |   temple.js
+|   |       |   townHall.js
+|   |       |   tradeAdvisor.js
+|   |       |   tradegood.js
+|   |       |   tradeRoutes.js
+|   |       |   transport.js
+|   |       |   warehouse.js
+|   |       |   wonder.js
+|   |       |   
+|   |       \---controllers
+|   |               museum.controller.js
+|   |               palace.controller.js
+|   |               townHall.controller.js
+|   |               
+|   \---sandbox
+|           init.js
+|           langs.js
+|           options.js
+|           templater.js
+|           
++---lang
+|       all.js
+|       bg.js
+|       de.js
+|       el.js
+|       en.js
+|       es.js
+|       gr.js
+|       it.js
+|       lt.js
+|       pl.js
+|       ru.js
+|       sr.js
+|       tr.js
+|       
++---tpl
+|   |   barbarianVillage.ejs
+|   |   barbarianVillage.js
+|   |   city-buildingInfo.ejs
+|   |   city-buildingInfo.js
+|   |   city-infoBlock.ejs
+|   |   city-infoBlock.js
+|   |   city-watcherTooltip.ejs
+|   |   city-watcherTooltip.js
+|   |   diplomacy-ikalogs.ejs
+|   |   diplomacy-ikalogs.js
+|   |   diplomacy-link-image.ejs
+|   |   diplomacy-link-image.js
+|   |   diplomacy-members.ejs
+|   |   diplomacy-members.js
+|   |   dummy-resourceProd.ejs
+|   |   dummy-resourceProd.js
+|   |   dummy-transporterCity.ejs
+|   |   dummy-transporterCity.js
+|   |   dummy-wineSpending.ejs
+|   |   dummy-wineSpending.js
+|   |   espionage.ejs
+|   |   finances-gold.ejs
+|   |   finances-gold.js
+|   |   helper-support-email.ejs
+|   |   helper-support-email.js
+|   |   helper-support.ejs
+|   |   helper-support.js
+|   |   helper-win.ejs
+|   |   helper-win.js
+|   |   ikalogs-dynamic.ejs
+|   |   ikalogs-dynamic.js
+|   |   island_mine.ejs
+|   |   island_mine.js
+|   |   js-confirmPopup.ejs
+|   |   js-confirmPopup.js
+|   |   marker.ejs
+|   |   marker.js
+|   |   military-unit-detail.ejs
+|   |   military-unit-detail.js
+|   |   military.ejs
+|   |   options-page.ejs
+|   |   options-page.js
+|   |   options-tab.ejs
+|   |   options-tab.js
+|   |   safehouse.ejs
+|   |   safehouse.js
+|   |   transport-buttons.ejs
+|   |   transport-buttons.js
+|   |   userMarker.ejs
+|   |   userMarker.js
+|   |   utils-dynamicWindow.ejs
+|   |   utils-dynamicWindow.js
+|   |   utils-leftSlot.ejs
+|   |   utils-leftSlot.js
+|   |   utils-winSideBar.ejs
+|   |   utils-winSideBar.js
+|   |   whatNews.ejs
+|   |   whatNews.js
+|   |   worldmap-islandSearch.ejs
+|   |   worldmap-islandSearch.js
+|   |   _dummy.js
+|   |   
+|   +---dummy
+|   |   +---empire
+|   |   |   |   window.ejs
+|   |   |   |   window.js
+|   |   |   |   
+|   |   |   +---other
+|   |   |   |       building.ejs
+|   |   |   |       building.js
+|   |   |   |       resource.ejs
+|   |   |   |       resource.js
+|   |   |   |       resourceTotal.ejs
+|   |   |   |       resourceTotal.js
+|   |   |   |       
+|   |   |   +---tabs
+|   |   |   |       buildings.ejs
+|   |   |   |       buildings.js
+|   |   |   |       espionage.ejs
+|   |   |   |       espionage.js
+|   |   |   |       military.ejs
+|   |   |   |       military.js
+|   |   |   |       resources.ejs
+|   |   |   |       resources.js
+|   |   |   |       
+|   |   |   \---tooltip
+|   |   |           building.ejs
+|   |   |           building.js
+|   |   |           corruption.ejs
+|   |   |           corruption.js
+|   |   |           happiness.ejs
+|   |   |           happiness.js
+|   |   |           research.ejs
+|   |   |           research.js
+|   |   |           resource.ejs
+|   |   |           resource.js
+|   |   |           
+|   |   +---notes
+|   |   |       note-list.ejs
+|   |   |       note-list.js
+|   |   |       note-main.ejs
+|   |   |       note-main.js
+|   |   |       note-text.ejs
+|   |   |       note-text.js
+|   |   |       
+|   |   \---queue
+|   |           warning.ejs
+|   |           warning.js
+|   |           
+|   \---patreon
+|           block.ejs
+|           block.js
+|           button.ejs
+|           button.js
+|           
+\---_locales
+    +---en
+    |       messages.json
+    |       
+    \---ru
+            messages.json
+            
